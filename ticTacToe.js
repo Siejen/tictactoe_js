@@ -9,14 +9,33 @@ window.onload =  function(event){
 	var box21 = document.getElementById("box21");
 	var box22 = document.getElementById("box22");
 	var boxReset = document.getElementById("boxReset");
+	var statusDiv = document.getElementById("gameStatus");
 	
 	var priorMarker = "O" //This is setup as priorMarker = "O" because we want the game to start off with marking "X"
 	var gameStates = [[ " ", " ", " " ], [ " ", " ", " " ], [ " ", " ", " " ]];
+	var gameStatus = function () {
+		for (var i = 0; i < gameStates.length; i++) {
+			var row = gameStates[i];
+			console.log("row.toString(): " + row.toString() );
+			//a2.toString() == a1.toString()
+			if (row.toString() == ["X", "X", "X"].toString()) {
+				console.log("X is a win.");
+				statusDiv.innerHTML = "Game Status: X wins!";
+			}
+			else if (row.toString() == ["O", "O", "O"].toString()) {
+				console.log("O is a win.");
+				statusDiv.innerHTML = "Game Status: O wins!";
+			}
+		}
+	}
+
 
 	// goal: prevent user from overwriting an already played "X" or "0"
 	// ...
 	// either a: see if the div has an X or O, and then do nothing if that is the case
 	// or     b: see if the div is actually empty, and only then fill it with the new move
+
+
 
 	box00.onclick = function () {
 		if( box00.innerHTML === " " ) {
@@ -33,6 +52,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box01.onclick = function () {
@@ -50,6 +70,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();		
 	}
 
 	box02.onclick = function () {
@@ -67,6 +88,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();		
 	}
 
 	box10.onclick = function () {
@@ -84,6 +106,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box11.onclick = function () {
@@ -101,6 +124,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box12.onclick = function () {
@@ -118,6 +142,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box20.onclick = function () {
@@ -135,6 +160,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box21.onclick = function () {
@@ -152,6 +178,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 
 	box22.onclick = function () {
@@ -169,6 +196,7 @@ window.onload =  function(event){
 		}
 		console.log(priorMarker);
 		console.log(gameStates);
+		gameStatus();
 	}
 }
 
