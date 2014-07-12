@@ -4,7 +4,7 @@ h1 {
 
 #container {
 	background: grey;
-	height: 390px;
+	height: 445px;
 	width: 330px;
 	padding-top: 10px;
     text-align: center;
@@ -12,11 +12,11 @@ h1 {
 }
 
 .row {
-height: 120px;
-margin-left: auto;
-margin-right: auto;
-margin-bottom: 10px;
-width: 100%;
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 100%;
 }
 
 .box {
@@ -29,4 +29,24 @@ width: 100%;
 	text-align: center;
 	padding-top: 10px;
 	float: left;
+}
+
+.row_Reset {
+	height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.boxResetBtn {
+	background: blue;
+	width: 100px;
+	height: 36px;
+	font-size: 32px;
+	color: white;
+	margin: 4px 0px 4px 7px;
+	text-align: center;
+	padding-top: 10px;
+	float: center;	
 }
