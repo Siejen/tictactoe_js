@@ -97,19 +97,18 @@ window.onload =  function(event){
 	// or     b: see if the div is actually empty, and only then fill it with the new move
 
 
-
-	box00.onclick = function () {
-		if( box00.innerHTML === " " && gameOver === false) {
+	var boxClick = function(box, row, col) {
+		if( box.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
+	 			box.innerHTML = "X";
 	 			priorMarker = "X";
-	 			gameStates[0][0] = "X";
+	 			gameStates[row][col] = "X";
 	 			count++;
 			}
 			else {
-				this.innerHTML = "O";
+				box.innerHTML = "O";
 				priorMarker = "O";
-				gameStates[0][0] = "O";
+				gameStates[row][col] = "O";
 				count++;
 			}
 		}
@@ -118,182 +117,43 @@ window.onload =  function(event){
 		gameStatus();
 		console.log(count);
 		ck4Stalemate();
+	}
+
+
+	box00.onclick = function () {
+		boxClick(this, 0, 0);
 	}
 
 	box01.onclick = function () {
-		if ( box01.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[0][1] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[0][1] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();		
+		boxClick(this, 0, 1);
 	}
 
 	box02.onclick = function () {
-		if ( box02.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[0][2] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[0][2] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();		
+		boxClick(this, 0, 2);
 	}
 
 	box10.onclick = function () {
-		if ( box10.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[1][0] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[1][0] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 1, 0);
 	}
 
 	box11.onclick = function () {
-		if ( box11.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[1][1] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[1][1] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 1, 1);
 	}
 
 	box12.onclick = function () {
-		if ( box12.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[1][2] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[1][2] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 1, 2);
 	}
 
 	box20.onclick = function () {
-		if ( box20.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[2][0] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[2][0] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 2, 0);
 	}
 
 	box21.onclick = function () {
-		if ( box21.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[2][1] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[2][1] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 2, 1);
 	}
 
 	box22.onclick = function () {
-		if ( box22.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
-	 			this.innerHTML = "X";
-				priorMarker = "X";
-				gameStates[2][2] = "X";
-				count++; 
-			}
-			else {
-				this.innerHTML = "O";
-				priorMarker = "O";
-				gameStates[2][2] = "O";
-				count++;
-			}	
-		}
-		// console.log(priorMarker);
-		// console.log(gameStates);
-		gameStatus();
-		console.log(count);
-		ck4Stalemate();
+		boxClick(this, 2, 2);
 	}
 
 	boxReset.onclick = function () {
