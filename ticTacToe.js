@@ -11,6 +11,7 @@ window.onload =  function(event){
 	var boxReset = document.getElementById("boxReset");
 	var statusDiv = document.getElementById("gameStatus");
 	
+	//These are the 4 game state variables
 	var priorMarker = "O" //This is setup as priorMarker = "O" because we want the game to start off with marking "X"
 	var gameStates = [[ " ", " ", " " ], [ " ", " ", " " ], [ " ", " ", " " ]];
 	var gameOver = false;
@@ -27,6 +28,7 @@ window.onload =  function(event){
 		//check the rows
 		for (var i = 0; i < gameStates.length; i++) {
 			var row = gameStates[i];
+			//var row = [gameStates[i][0], gameStates[i][1], gameStates[i][2]];
 			console.log("row.toString(): " + row.toString() );
 			//a2.toString() == a1.toString() <-- Compares Arrays
 			if (row.toString() == ["X", "X", "X"].toString()) {
@@ -320,7 +322,6 @@ window.onload =  function(event){
 // //boxes[0].innerHTML = "0";  
 // }
 
-
 // Pete's notes:
 // I think we can re-use the pattern we had for the calculator;
 // this is going to be both better, and worse, in terms of javascript complexity
@@ -343,3 +344,5 @@ window.onload =  function(event){
 // ... notice that this is three arrays inside of one big array
 // ... so you can refer to the array by row index and column index
 // ... gameStates[0][0] grabs the state of the 00 box (e.g.)
+
+
