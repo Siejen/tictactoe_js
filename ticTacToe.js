@@ -23,6 +23,23 @@ window.onload =  function(event){
 		}
 	}
 
+	//verifySet3 function created as part of the refactoring process
+	//verifySet3 function to be used in gameStatus function
+	//tests the set passed in as argument set3 against the 2 possible winning sets
+	var verifySet3 = function (set3) { 
+		//a2.toString() == a1.toString() <-- Compares Arrays
+		if (set3.toString() == ["X", "X", "X"].toString()) {
+			console.log("X is a win.");
+			statusDiv.innerHTML = "Game Status: X wins!";
+			gameOver = true;
+		}
+		else if (set3.toString() == ["O", "O", "O"].toString()) {
+			console.log("O is a win.");
+			statusDiv.innerHTML = "Game Status: O wins!";
+			gameOver = true;
+		}
+	}
+
 	//gameStatus checks for wins only
 	var gameStatus = function () {
 		//check the rows
@@ -30,73 +47,29 @@ window.onload =  function(event){
 			var row = gameStates[i];
 			//var row = [gameStates[i][0], gameStates[i][1], gameStates[i][2]];
 			console.log("row.toString(): " + row.toString() );
-			//a2.toString() == a1.toString() <-- Compares Arrays
-			if (row.toString() == ["X", "X", "X"].toString()) {
-				console.log("X is a win.");
-				statusDiv.innerHTML = "Game Status: X wins!";
-				gameOver = true;
-			}
-			else if (row.toString() == ["O", "O", "O"].toString()) {
-				console.log("O is a win.");
-				statusDiv.innerHTML = "Game Status: O wins!";
-				gameOver = true;
-			}
+			verifySet3(row);
 		}
 
 		//check the columns
 		for (var i = 0; i < gameStates.length; i++) {
 			var column = [gameStates[0][i], gameStates[1][i], gameStates[2][i]];
 			console.log("column.toString(): " + column.toString() );
-			//a2.toString() == a1.toString() <-- Compares Arrays
-			if (column.toString() == ["X", "X", "X"].toString()) {
-				console.log("X is a win.");
-				statusDiv.innerHTML = "Game Status: X wins!";
-				gameOver = true;
-			}
-			else if (column.toString() == ["O", "O", "O"].toString()) {
-				console.log("O is a win.");
-				statusDiv.innerHTML = "Game Status: O wins!";
-				gameOver = true;
-			}
+			verifySet3(column);
 		}
 
 		//check left diagonal (left to right from top to down)
 		var leftDiagonal = [gameStates[0][0], gameStates[1][1], gameStates[2][2]];
 		console.log("leftDiagonal.toString(): " + leftDiagonal.toString() );
-		//a2.toString() == a1.toString() <-- Compares Arrays
-		if (leftDiagonal.toString() == ["X", "X", "X"].toString()) {
-			console.log("X is a win.");
-			statusDiv.innerHTML = "Game Status: X wins!";
-			gameOver = true;
-		}
-		else if (leftDiagonal.toString() == ["O", "O", "O"].toString()) {
-			console.log("O is a win.");
-			statusDiv.innerHTML = "Game Status: O wins!";
-			gameOver = true;
-		}
+		verifySet3(leftDiagonal);
 		
 		//check right diagonal (right to left from top to down)
 		var rightDiagonal = [gameStates[0][2], gameStates[1][1], gameStates[2][0]];
-		console.log("rightDiagonal.toString(): " + rightDiagonal.toString() );
-		//a2.toString() == a1.toString() <-- Compares Arrays
-		if (rightDiagonal.toString() == ["X", "X", "X"].toString()) {
-			console.log("X is a win.");
-			statusDiv.innerHTML = "Game Status: X wins!";
-			gameOver = true;
-		}
-		else if (rightDiagonal.toString() == ["O", "O", "O"].toString()) {
-			console.log("O is a win.");
-			statusDiv.innerHTML = "Game Status: O wins!";
-			gameOver = true;
-		}
+		console.log("rightDiagonal.toString(): " + rightDiagonal.toString() );		
+		verifySet3(rightDiagonal);
 	}
 
-	// goal: prevent user from overwriting an already played "X" or "0"
-	// ...
-	// either a: see if the div has an X or O, and then do nothing if that is the case
-	// or     b: see if the div is actually empty, and only then fill it with the new move
 
-
+	//boxClick function created as part of the refactoring process
 	var boxClick = function(box, row, col) {
 		if( box.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
@@ -173,36 +146,4 @@ window.onload =  function(event){
 		statusDiv.innerHTML = " ";
 	}
 }
-
-
-// var boxes = document.getElementsByClassName("box")
-
-// boxes[0].onclick = function () {
-//   this.innerHTML = "O";
-// //boxes[0].innerHTML = "0";  
-// }
-
-// Pete's notes:
-// I think we can re-use the pattern we had for the calculator;
-// this is going to be both better, and worse, in terms of javascript complexity
-// ... better because calculators are actually more complicated as we discussed (operator precedence and such)
-// ... worse because there is more program state (now referred to as game state :)
-//
-// 1. grab a var divFoo for each box
-// ... something like this var divBox00 = document.getElementById( "theid" )
-// ... you'll do this 9 times + 1 time (9 boxes, 1 reset)
-// 2. give each an onclick function
-// ... like this: divBox00.onclick = function(event) { ...yer code here... };
-// 4. so for box00 to box22, the onclick functions call another function, like so:
-// ... // for row 1, column 2, this goes inside a specific box onclick
-// ... // but calls the master boxClick with some specific coordinates
-// ... boxClick(1,2); 
-// 5. game state:
-// ... three states for each box: "e", "x", "o"
-// ... use a nested array: 
-// ... var gameStates = [[ "e", "e", "e" ], [ "e", "e", "e" ], [ "e", "e", "e" ]];
-// ... notice that this is three arrays inside of one big array
-// ... so you can refer to the array by row index and column index
-// ... gameStates[0][0] grabs the state of the 00 box (e.g.)
-
 
