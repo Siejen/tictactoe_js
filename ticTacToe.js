@@ -13,22 +13,81 @@ window.onload =  function(event){
 	
 	var priorMarker = "O" //This is setup as priorMarker = "O" because we want the game to start off with marking "X"
 	var gameStates = [[ " ", " ", " " ], [ " ", " ", " " ], [ " ", " ", " " ]];
+	var gameOver = false;
+	var count = 0
+
+	var ck4Stalemate = function () {
+		if (count >= 9 && gameOver === false) {
+			statusDiv.innerHTML = "Stalemate, Game Over!";	
+		}
+	}
+
+	//gameStatus checks for wins only
 	var gameStatus = function () {
+		//check the rows
 		for (var i = 0; i < gameStates.length; i++) {
 			var row = gameStates[i];
 			console.log("row.toString(): " + row.toString() );
-			//a2.toString() == a1.toString()
+			//a2.toString() == a1.toString() <-- Compares Arrays
 			if (row.toString() == ["X", "X", "X"].toString()) {
 				console.log("X is a win.");
 				statusDiv.innerHTML = "Game Status: X wins!";
+				gameOver = true;
 			}
 			else if (row.toString() == ["O", "O", "O"].toString()) {
 				console.log("O is a win.");
 				statusDiv.innerHTML = "Game Status: O wins!";
+				gameOver = true;
 			}
 		}
-	}
 
+		//check the columns
+		for (var i = 0; i < gameStates.length; i++) {
+			var column = [gameStates[0][i], gameStates[1][i], gameStates[2][i]];
+			console.log("column.toString(): " + column.toString() );
+			//a2.toString() == a1.toString() <-- Compares Arrays
+			if (column.toString() == ["X", "X", "X"].toString()) {
+				console.log("X is a win.");
+				statusDiv.innerHTML = "Game Status: X wins!";
+				gameOver = true;
+			}
+			else if (column.toString() == ["O", "O", "O"].toString()) {
+				console.log("O is a win.");
+				statusDiv.innerHTML = "Game Status: O wins!";
+				gameOver = true;
+			}
+		}
+
+		//check left diagonal (left to right from top to down)
+		var leftDiagonal = [gameStates[0][0], gameStates[1][1], gameStates[2][2]];
+		console.log("leftDiagonal.toString(): " + leftDiagonal.toString() );
+		//a2.toString() == a1.toString() <-- Compares Arrays
+		if (leftDiagonal.toString() == ["X", "X", "X"].toString()) {
+			console.log("X is a win.");
+			statusDiv.innerHTML = "Game Status: X wins!";
+			gameOver = true;
+		}
+		else if (leftDiagonal.toString() == ["O", "O", "O"].toString()) {
+			console.log("O is a win.");
+			statusDiv.innerHTML = "Game Status: O wins!";
+			gameOver = true;
+		}
+		
+		//check right diagonal (right to left from top to down)
+		var rightDiagonal = [gameStates[0][2], gameStates[1][1], gameStates[2][0]];
+		console.log("rightDiagonal.toString(): " + rightDiagonal.toString() );
+		//a2.toString() == a1.toString() <-- Compares Arrays
+		if (rightDiagonal.toString() == ["X", "X", "X"].toString()) {
+			console.log("X is a win.");
+			statusDiv.innerHTML = "Game Status: X wins!";
+			gameOver = true;
+		}
+		else if (rightDiagonal.toString() == ["O", "O", "O"].toString()) {
+			console.log("O is a win.");
+			statusDiv.innerHTML = "Game Status: O wins!";
+			gameOver = true;
+		}
+	}
 
 	// goal: prevent user from overwriting an already played "X" or "0"
 	// ...
@@ -38,172 +97,220 @@ window.onload =  function(event){
 
 
 	box00.onclick = function () {
-		if( box00.innerHTML === " " ) {
+		if( box00.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 	 			priorMarker = "X";
-	 			gameStates[0][0] = "X"
+	 			gameStates[0][0] = "X";
+	 			count++;
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[0][0] = "O";
+				count++;
 			}
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box01.onclick = function () {
-		if ( box01.innerHTML === " ") {
+		if ( box01.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[0][1] = "X" 
+				gameStates[0][1] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[0][1] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
-		gameStatus();		
+		// console.log(priorMarker);
+		// console.log(gameStates);
+		gameStatus();
+		console.log(count);
+		ck4Stalemate();		
 	}
 
 	box02.onclick = function () {
-		if ( box02.innerHTML === " ") {
+		if ( box02.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[0][2] = "X" 
+				gameStates[0][2] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[0][2] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
-		gameStatus();		
+		// console.log(priorMarker);
+		// console.log(gameStates);
+		gameStatus();
+		console.log(count);
+		ck4Stalemate();		
 	}
 
 	box10.onclick = function () {
-		if ( box10.innerHTML === " ") {
+		if ( box10.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[1][0] = "X" 
+				gameStates[1][0] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[1][0] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box11.onclick = function () {
-		if ( box11.innerHTML === " ") {
+		if ( box11.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[1][1] = "X" 
+				gameStates[1][1] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[1][1] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box12.onclick = function () {
-		if ( box12.innerHTML === " ") {
+		if ( box12.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[1][2] = "X" 
+				gameStates[1][2] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[1][2] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box20.onclick = function () {
-		if ( box20.innerHTML === " ") {
+		if ( box20.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[2][0] = "X" 
+				gameStates[2][0] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[2][0] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box21.onclick = function () {
-		if ( box21.innerHTML === " ") {
+		if ( box21.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[2][1] = "X" 
+				gameStates[2][1] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[2][1] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
 	}
 
 	box22.onclick = function () {
-		if ( box22.innerHTML === " ") {
+		if ( box22.innerHTML === " " && gameOver === false) {
 			if ( priorMarker === "O" ) {
 	 			this.innerHTML = "X";
 				priorMarker = "X";
-				gameStates[2][2] = "X" 
+				gameStates[2][2] = "X";
+				count++; 
 			}
 			else {
 				this.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[2][2] = "O";
+				count++;
 			}	
 		}
-		console.log(priorMarker);
-		console.log(gameStates);
+		// console.log(priorMarker);
+		// console.log(gameStates);
 		gameStatus();
+		console.log(count);
+		ck4Stalemate();
+	}
+
+	boxReset.onclick = function () {
+		priorMarker = "O" //This is setup as priorMarker = "O" because we want the game to start off with marking "X"
+		gameStates = [[ " ", " ", " " ], [ " ", " ", " " ], [ " ", " ", " " ]];
+		gameOver = false;
+		count = 0;
+		box00.innerHTML = " ";
+		box01.innerHTML = " ";
+		box02.innerHTML = " ";
+		box10.innerHTML = " ";
+		box11.innerHTML = " ";
+		box12.innerHTML = " ";
+		box20.innerHTML = " ";
+		box21.innerHTML = " ";
+		box22.innerHTML = " ";
+		statusDiv.innerHTML = " ";
 	}
 }
-
-
-
-
-
 
 
 // var boxes = document.getElementsByClassName("box")
