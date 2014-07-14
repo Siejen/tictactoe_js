@@ -72,16 +72,18 @@ window.onload =  function(event){
 	//boxClick function created as part of the refactoring process
 	var boxClick = function(box, row, col) {
 		if( box.innerHTML === " " && gameOver === false) {
-			if ( priorMarker === "O" ) {
+			if (priorMarker === "O" ) {
 	 			box.innerHTML = "X";
 	 			priorMarker = "X";
 	 			gameStates[row][col] = "X";
+	 			box.style.backgroundColor = "yellow";
 	 			count++;
 			}
 			else {
 				box.innerHTML = "O";
 				priorMarker = "O";
 				gameStates[row][col] = "O";
+				box.style.backgroundColor = "green";
 				count++;
 			}
 		}
@@ -144,6 +146,15 @@ window.onload =  function(event){
 		box21.innerHTML = " ";
 		box22.innerHTML = " ";
 		statusDiv.innerHTML = " ";
+		box00.style.backgroundColor = "white";
+		box01.style.backgroundColor = "white";
+		box02.style.backgroundColor = "white";
+		box10.style.backgroundColor = "white";
+		box11.style.backgroundColor = "white";
+		box12.style.backgroundColor = "white";
+		box20.style.backgroundColor = "white";
+		box21.style.backgroundColor = "white";
+		box22.style.backgroundColor = "white";
 	}
 }
 
